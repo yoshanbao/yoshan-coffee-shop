@@ -1,0 +1,101 @@
+"use client";
+
+import { NavigationLink } from "./NavigationLink";
+import { useEffect, useRef, useState } from "react";
+
+export function MobileNavigation({ links, mapsUrl }: {
+  links: { href: string; label: string }[];
+  mapsUrl: string;
+}) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+
+  function finishClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    dialogRef.current?.close();
+    setOpen(false);
+    setClosing(false);
+  }
+
+  function closeMenu() {
+    if (closing) return;
+    setClosing(true);
+    closeTimer.current = setTimeout(finishClose, 200);
+  }
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onResize = () => { if (desktop.matches) finishClose(); };
+    desktop.addEventListener("change", onResize);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      desktop.removeEventListener("change", onResize);
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, [open]);
+
+  return (
+    <div className="lg:hidden">
+      <button
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded={open}
+        aria-controls="mobile-navigation"
+        aria-haspopup="dialog"
+        onClick={() => { setClosing(false); dialogRef.current?.showModal(); setOpen(true); }}
+        className="navigation-control navigation-control-outlined inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border-hairline text-primary"
+      >
+        <span className="material-symbols-outlined" aria-hidden="true">menu</span>
+      </button>
+      <dialog
+        ref={dialogRef}
+        id="mobile-navigation"
+        aria-labelledby="mobile-navigation-title"
+        onCancel={(event) => { event.preventDefault(); closeMenu(); }}
+        onKeyDown={(event) => {
+          if (event.key !== "Tab") return;
+          const targets = Array.from(event.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not([tabindex="-1"])'));
+          const first = targets[0];
+          const last = targets[targets.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }}
+        onClose={() => { setOpen(false); setClosing(false); }}
+        className={`fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none overflow-hidden bg-transparent p-0 text-espresso-ink backdrop:bg-espresso-ink/40 backdrop:backdrop-blur-sm ${closing ? "mobile-menu-closing" : ""}`}
+      >
+        <div className="flex h-full justify-end">
+          <button type="button" tabIndex={-1} aria-label="Close navigation backdrop" onClick={closeMenu} className="absolute inset-0 h-full w-full cursor-default" />
+          <div className="mobile-menu-panel relative flex h-full w-[min(90vw,24rem)] flex-col overflow-y-auto bg-canvas-white px-6 py-5 shadow-xl">
+            <div className="flex items-center justify-between gap-4 border-b border-border-hairline pb-5">
+              <h2 id="mobile-navigation-title" className="text-lg font-bold">Explore A&amp;J’s</h2>
+              <button autoFocus type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border-hairline text-primary">
+                <span className="material-symbols-outlined" aria-hidden="true">close</span>
+              </button>
+            </div>
+            <nav aria-label="Mobile navigation" className="my-6 flex flex-col gap-2">
+              {links.map((link) => (
+                <NavigationLink key={link.href} href={link.href} variant="mobile" onClick={closeMenu}>
+                  {link.label}
+                </NavigationLink>
+              ))}
+            </nav>
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="navigation-control navigation-control-filled mt-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-semibold text-white">
+              <span className="material-symbols-outlined" aria-hidden="true">directions</span>
+              Get Directions
+            </a>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  );
+}
