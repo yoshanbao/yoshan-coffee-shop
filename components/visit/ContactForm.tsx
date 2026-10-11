@@ -44,7 +44,7 @@ export function ContactForm() {
           <textarea className={fieldClass} id="contact-message" name="message" placeholder="How can we help?" required minLength={10} maxLength={5000} rows={5} aria-describedby="contact-message-hint contact-delivery-note contact-privacy-note" />
           <p id="contact-message-hint" className="mt-1.5 text-body-sm text-charcoal-muted">10–5,000 characters. Please leave out passwords, payment details, and other sensitive information.</p>
         </div>
-        <p id="contact-delivery-note" className="text-body-sm text-charcoal-muted">After submitting, complete the verification step on FormSubmit to send your message.</p>
+        <p id="contact-delivery-note" className="text-body-sm text-charcoal-muted">Submitting opens FormSubmit’s verification page. Complete that step and wait for its confirmation. If you cannot finish, return here and email us directly.</p>
         <p id="contact-privacy-note" className="text-body-sm text-charcoal-muted">Your name, email, and message are shared with FormSubmit for delivery to our inbox. <Link href="/privacy" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-2">Read our privacy notice</Link>.</p>
       </div>
     </ContactSubmission>

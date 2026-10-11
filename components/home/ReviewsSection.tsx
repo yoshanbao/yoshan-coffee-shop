@@ -14,8 +14,8 @@ export function ReviewsSection() {
             <span aria-hidden="true" className="material-symbols-outlined text-4xl text-primary">rate_review</span>
             <p className="text-lg font-semibold text-espresso-ink">Your feedback helps neighbors discover the shop.</p>
             <a href={businessInfo.reviewUrl} target="_blank" rel="noopener noreferrer" className="motion-control mt-2 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-primary px-5 py-3 text-center font-semibold text-primary hover:bg-pale-mint">Read reviews on Google Maps <span aria-hidden="true">↗</span></a>
-            <a href={businessInfo.reviewUrl} target="_blank" rel="noopener noreferrer" className="motion-control inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-center font-semibold text-on-primary hover:bg-studio-teal-deep"><span aria-hidden="true" className="material-symbols-outlined text-lg">rate_review</span>Leave us a Google review</a>
-            <p className="text-center text-sm text-charcoal-muted">On Google Maps, choose “Write a review.”</p>
+            <a href={businessInfo.reviewUrl} target="_blank" rel="noopener noreferrer" className="motion-control inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-center font-semibold text-on-primary hover:bg-studio-teal-deep"><span aria-hidden="true" className="material-symbols-outlined text-lg">rate_review</span>Review us on Google Maps <span aria-hidden="true">↗</span></a>
+            <p className="text-center text-sm text-charcoal-muted">Opens our Google Maps listing in a new tab. Choose “Write a review” and sign in to Google if asked.</p>
           </div>
         </div>
       </div>

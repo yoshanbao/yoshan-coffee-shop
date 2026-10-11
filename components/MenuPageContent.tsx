@@ -23,7 +23,7 @@ export function MenuPageContent({ activeView }: { activeView?: MenuView }) {
           <div className="py-8 sm:py-10"><MenuCustomization heading="Drink options." /></div>
         ) : (
           <>
-            {activeView !== "lemonade" && <FallDrinks activeCategory={featuredCategory} />}
+            {(!activeView || activeView === "fall-drinks") && <FallDrinks />}
             {activeView !== "fall-drinks" && <MenuGrid activeCategory={activeView === "lemonade" ? "lemonade" : featuredCategory} />}
           </>
         )}

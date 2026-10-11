@@ -8,19 +8,36 @@ export function MobileNavigation({ links, mapsUrl }: {
   mapsUrl: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
 
   function finishClose() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
     dialogRef.current?.close();
     setOpen(false);
     setClosing(false);
   }
 
+  function openMenu() {
+    const dialog = dialogRef.current;
+    if (!dialog || dialog.open) return;
+    setClosing(false);
+    // Focus the settled panel before starting its entry animation. Focusing an
+    // offscreen, transformed button can otherwise scroll the dialog sideways.
+    dialog.showModal();
+    closeButtonRef.current?.focus({ preventScroll: true });
+    setOpen(true);
+  }
+
   function closeMenu() {
-    if (closing) return;
+    if (closing || !dialogRef.current?.open) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      finishClose();
+      return;
+    }
     setClosing(true);
     closeTimer.current = setTimeout(finishClose, 200);
   }
@@ -47,7 +64,7 @@ export function MobileNavigation({ links, mapsUrl }: {
         aria-expanded={open}
         aria-controls="mobile-navigation"
         aria-haspopup="dialog"
-        onClick={() => { setClosing(false); dialogRef.current?.showModal(); setOpen(true); }}
+        onClick={openMenu}
         className="navigation-control navigation-control-outlined inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border-hairline text-primary"
       >
         <span className="material-symbols-outlined" aria-hidden="true">menu</span>
@@ -71,14 +88,14 @@ export function MobileNavigation({ links, mapsUrl }: {
           }
         }}
         onClose={() => { setOpen(false); setClosing(false); }}
-        className={`fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none overflow-hidden bg-transparent p-0 text-espresso-ink backdrop:bg-espresso-ink/40 backdrop:backdrop-blur-sm ${closing ? "mobile-menu-closing" : ""}`}
+        className={`mobile-menu-dialog fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none overflow-clip bg-transparent p-0 text-espresso-ink backdrop:bg-espresso-ink/40 backdrop:backdrop-blur-sm ${closing ? "mobile-menu-closing" : open ? "mobile-menu-opening" : ""}`}
       >
-        <div className="flex h-full justify-end">
+        <div className="relative h-full">
           <button type="button" tabIndex={-1} aria-label="Close navigation backdrop" onClick={closeMenu} className="absolute inset-0 h-full w-full cursor-default" />
-          <div className="mobile-menu-panel relative flex h-full w-[min(90vw,24rem)] flex-col overflow-y-auto bg-canvas-white px-6 py-5 shadow-xl">
+          <div className="mobile-menu-panel absolute inset-y-0 right-0 flex h-full w-[min(90vw,24rem)] flex-col overflow-y-auto bg-canvas-white px-6 py-5 shadow-xl">
             <div className="flex items-center justify-between gap-4 border-b border-border-hairline pb-5">
               <h2 id="mobile-navigation-title" className="text-lg font-bold">Explore A&amp;J’s</h2>
-              <button autoFocus type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border-hairline text-primary">
+              <button ref={closeButtonRef} type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border-hairline text-primary">
                 <span className="material-symbols-outlined" aria-hidden="true">close</span>
               </button>
             </div>

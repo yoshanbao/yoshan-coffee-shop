@@ -57,7 +57,7 @@ The supplied archive has no `home_page/screen.png` and provides `warm_editorial_
 
 ## Contact email delivery
 
-The Visit page form submits directly over HTTPS to FormSubmit, which delivers messages to `han472230@gmail.com`. No Gmail password or email API key is needed. The recipient is maintained in `lib/business-info.ts`.
+The Visit page form submits directly over HTTPS to FormSubmit, configured to forward messages to `han472230@gmail.com`. No Gmail password or email API key is needed. The recipient is maintained in `lib/business-info.ts`.
 
 1. Open the site through a web server (`npm run dev` locally, or the deployed HTTPS site) and submit the form once.
 2. Open the activation email in `han472230@gmail.com` and confirm the form. Check Spam if needed.
@@ -65,18 +65,24 @@ The Visit page form submits directly over HTTPS to FormSubmit, which delivers me
 
 FormSubmit shows its CAPTCHA and confirmation page after the visitor submits. CAPTCHA is enabled, and the form includes a honeypot and browser validation. The visitor's `email` field becomes the reply address. Name, email, topic, and message are processed by FormSubmit; the site does not store them. These browser checks are not a substitute for the provider's server-side validation and abuse prevention.
 
-After activation, FormSubmit supplies a public form ID that can be set in `FORMSUBMIT_FORM_ID` instead of using the email address in the submission URL. Activation and real email delivery cannot be confirmed until the inbox owner completes that step.
+After activation, FormSubmit supplies a public form ID that can be set in `FORMSUBMIT_FORM_ID` instead of using the email address in the submission URL. On October 11, 2026, the inbox owner confirmed activation. An authorized test inquiry, “Website delivery test AJ-20261011. Please confirm receipt.”, reached FormSubmit's CAPTCHA; the user completed verification and confirmed receipt in `han472230@gmail.com`. This verifies that test's delivery to the current recipient. When changing destinations, activate the new inbox and repeat the live test, checking its name, reply address, topic, and message. A provider confirmation page alone does not establish inbox receipt; also check Spam. Replace the temporary recipient with the shop's inbox and activate that destination before client handoff.
 
 ## Google reviews
 
-The Home and Visit pages link to the shop's Google Maps reviews listing. Visitors can read current ratings and reviews there or choose **Write a review** on Google Maps. The listing URL is maintained in `lib/business-info.ts`. The website does not request or display Google rating numbers or written reviews, so no Google Places API key, Place ID, Google Cloud project, or billing setup is needed.
+The Home and Visit pages label the review action **Review us on Google Maps** because it opens the supplied listing, rather than a direct review form. Visitors can read current ratings and reviews there or choose **Write a review** on Google Maps and sign in if asked. The listing URL is maintained in `lib/business-info.ts`. The website does not request or display Google rating numbers or written reviews, so no Google Places API key, Place ID, Google Cloud project, or billing setup is needed.
+
+## Menu content and category navigation
+
+Regular drink descriptions and listed size prices follow the supplied menu-board photos. The owner should confirm current ingredients, prices, and seasonal availability before publishing. Filtered categories show their regular drinks first, followed by a compact matching seasonal group. All Drinks and Fall Drinks retain the full seasonal selection; customization stays in All Drinks and its dedicated page.
+
+Opening Menu normally leaves its title visible. Only an explicit category-link selection scrolls to the category area, after the destination renders. The shared Menu layout preserves that intent across the Lemonade and Customize routes without overriding initial loads, hash links, or normal browser Back navigation.
 
 ## Business content and launch checks
 
 - Hours confirmed by the owner: Monday–Saturday 6:30 AM–6:00 PM; Sunday closed. Business name, address, hours, directions, contact destination, and social links are maintained in `lib/business-info.ts`. Menu prices/customization data live in `lib/menu-data.ts` and `lib/menu-customization-data.ts`.
 - Set `SITE_URL` to the public HTTPS origin, without a path or query. On Vercel the stable production hostname is used as a fallback. This supplies canonicals, social previews, robots, sitemap, and local business JSON-LD. Local and Preview environments are noindex; both design-reference routes stay noindex on Production.
 - The site includes a favicon, social preview, policy pages, branded 404, and retry page. JSON-LD includes confirmed hours/address, without self-serving review markup.
-- Activate FormSubmit and verify a real second email arrives in `han472230@gmail.com`. Local tests intercept submissions and do not prove inbox delivery. Review the published privacy/site notices for your actual operating practices.
+- FormSubmit activation and a real test's receipt in `han472230@gmail.com` were confirmed by the inbox owner on October 11, 2026. Repeat a live test after changing the contact destination or deployment configuration; local intercepted tests do not prove inbox delivery. Review the published privacy/site notices for your actual operating practices.
 - Review `SECURITY_REVIEW.md` for tested protections and unresolved build-tool advisories. A local review does not verify your hosting account or replace ongoing dependency and traffic monitoring.
 - The active Home, Story, and Visit images are copied from `aj_design/assets/ref-style/` into `public/images/`. Replace their named files or edit each component path to update photos. Existing `editorial-*.jpg` reference files remain available but are not used by public pages.
 
@@ -84,7 +90,7 @@ The Home and Visit pages link to the shop's Google Maps reviews listing. Visitor
 
 Sections use `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`. Tailwind's standard breakpoints remain unchanged: `sm` starts at 640px, `md` at 768px, and `lg` at 1024px.
 
-Home category boxes and the craft gallery use a reusable snap carousel: one card with a preview of the next on phones, two cards on tablets, and three on desktop. Menu drink cards use 1 / 2 / 3 / 4 columns at those breakpoints. Hero, Story, contact, and location split layouts stay stacked below `lg`. The 64px header has desktop links at `lg` and a native modal navigation drawer below it, with focus containment, Escape/backdrop dismissal, restored focus, and scroll locking. The menu's category navigation sticks beneath the header and scrolls horizontally without widening the page; visible arrows and gradient edges indicate overflow. Selecting a category preserves the query-based server filter and seasonal drinks.
+Home category boxes and the craft gallery use a reusable snap carousel: one card with a preview of the next on phones, two cards on tablets, and three on desktop. Menu drink cards use 1 / 2 / 3 / 4 columns at those breakpoints. Hero, Story, contact, and location split layouts stay stacked below `lg`. The 64px header has desktop links at `lg` and a native modal navigation drawer below it, with focus containment, Escape/backdrop dismissal, restored focus, and scroll locking. The menu's category navigation sticks beneath the header and scrolls horizontally without widening the page on smaller screens; gradient edges and a swipe hint indicate overflow. Desktop shows all categories across two rows. Selecting a category preserves the query-based server filter and matching seasonal drinks.
 
 Controls have at least 44px touch targets. Contact fields use 16px text to avoid focus zoom on iPhones, headings scale by viewport, and animations respect reduced motion. The body uses `overflow-x-clip` to contain decorative elements while retaining sticky positioning.
 

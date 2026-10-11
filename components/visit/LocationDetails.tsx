@@ -50,9 +50,9 @@ export function LocationDetails() {
             target="_blank"
           >
             <span className="material-symbols-outlined text-lg" aria-hidden="true">rate_review</span>
-            Leave us a Google review
+            Review us on Google Maps <span aria-hidden="true">↗</span>
           </a>
-          <p className="mt-3 text-center text-body-sm text-charcoal-muted">On Google Maps, choose “Write a review.”</p>
+          <p className="mt-3 text-center text-body-sm text-charcoal-muted">Opens our Google Maps listing in a new tab. Choose “Write a review” and sign in to Google if asked.</p>
         </div>
       </div>
     </section>

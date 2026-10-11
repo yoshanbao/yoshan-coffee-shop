@@ -55,7 +55,7 @@ export function ContactSubmission({ action, contactEmail, children }: ContactSub
           <span className="material-symbols-outlined text-base" aria-hidden="true">{pending ? "hourglass_top" : "send"}</span>
           {pending ? "Opening verification…" : "Send message"}
         </button>
-        <p role="status" aria-live="polite" className="text-body-sm text-charcoal-muted">{pending ? "Continue on the verification page to send your message." : ""}</p>
+        <p role="status" aria-live="polite" className="text-body-sm text-charcoal-muted">{pending ? "Your message is not confirmed yet. Complete verification on FormSubmit and wait for its confirmation page." : ""}</p>
         <p className="text-body-sm text-charcoal-muted">You can also <a href={`mailto:${contactEmail}`} className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-2">email us directly</a>.</p>
       </div>
     </form>

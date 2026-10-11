@@ -6,7 +6,7 @@ export type SeasonalDrink = MenuItem & { id: string; category: FeaturedCategoryS
 /** Category membership is shared by the full menu and category links. */
 export const seasonalDrinks: SeasonalDrink[] = [
   { id: "golden-harvest-chai", category: "chai", categoryLabel: "Chai", name: "Golden Harvest Chai", description: "Spiced chai with pumpkin syrup, topped with cinnamon cold foam." },
-  { id: "autumn-spark", category: "refreshers", categoryLabel: "Energy", name: "Autumn Spark", description: "Red Bull infused with orange, finished with cranberry juice." },
+  { id: "autumn-spark", category: "refreshers", categoryLabel: "Infused Redbulls", name: "Autumn Spark", description: "Red Bull infused with orange, finished with cranberry juice." },
   { id: "milkyway-mocha", category: "mochas", categoryLabel: "Mocha", name: "Milkyway Mocha", description: "Espresso, milk, chocolate, caramel syrup, topped with cold foam and Milkyway sprinkles." },
   { id: "maple-morning-latte", category: "lattes", categoryLabel: "Latte", name: "Maple Morning Latte", description: "Espresso, milk, maple syrup, with caramel drizzle." },
   { id: "candy-apple-pop", category: "dirty-sodas", categoryLabel: "Soda", name: "Candy Apple Pop", description: "Sprite infused with green apple, caramel drizzle, and cream." },
@@ -18,6 +18,8 @@ export function getSeasonalDrinks(category?: FeaturedCategorySlug): SeasonalDrin
 }
 
 export type MenuSection = { id: string; title: string; prices: string[]; servingNote: string; items: MenuItem[] };
+// Descriptions and size prices follow the supplied menu-board photos.
+// Confirm current availability and pricing with the shop before publishing.
 export const menuSections: MenuSection[] = [
   {
     "id": "mochas",
@@ -31,27 +33,27 @@ export const menuSections: MenuSection[] = [
     "items": [
       {
         "name": "Banana Mocha",
-        "description": "Espresso, rich chocolate, and banana syrup with steamed or iced milk."
+        "description": "Chocolate-based drink with banana flavor, topped with whipped cream and chocolate drizzle."
       },
       {
         "name": "Raspberry Mocha",
-        "description": "Classic espresso blended with chocolate and tart red raspberry."
+        "description": "Chocolate-based drink with raspberry flavor, topped with cold foam and chocolate drizzle."
       },
       {
         "name": "Peanut Butter Mocha",
-        "description": "Decadent dark cocoa, nutty peanut butter notes, and fresh espresso."
+        "description": "Chocolate-based drink with peanut butter flavor, a touch of creamy smooth peanut butter, and chocolate drizzle."
       },
       {
         "name": "S’more’s Mocha",
-        "description": "Toasted marshmallow, graham cracker notes, chocolate, and rich espresso."
+        "description": "Chocolate-based drink with marshmallow smear and toasted marshmallow flavor, topped with cold foam."
       },
       {
         "name": "Grasshopper Mocha",
-        "description": "Refreshing cool mint combined with decadent chocolate and espresso."
+        "description": "Chocolate-based drink with mint flavor, topped with whipped cream and chocolate drizzle."
       },
       {
         "name": "Irish Cream Mocha",
-        "description": "Velvety Irish cream flavor balanced with mocha chocolate and espresso."
+        "description": "Chocolate-based drink with Irish cream flavor, topped with cold foam."
       }
     ]
   },
@@ -67,23 +69,23 @@ export const menuSections: MenuSection[] = [
     "items": [
       {
         "name": "White Chocolate Raspberry Latte",
-        "description": "Silky white chocolate, bright sweet raspberry, and fresh espresso."
+        "description": "Espresso base with white chocolate and red raspberry flavor."
       },
       {
         "name": "Vanilla Shortbread Latte",
-        "description": "Warm vanilla bean, buttery shortbread syrup, and steamed milk."
+        "description": "Espresso base with vanilla and shortbread flavor, topped with cold foam."
       },
       {
         "name": "Brown Sugar Cinnamon Latte",
-        "description": "Cozy dark brown sugar melted into espresso and dusted cinnamon notes."
+        "description": "Espresso base with brown sugar cinnamon flavor, topped with cinnamon flakes."
       },
       {
         "name": "Lavender Dream Latte",
-        "description": "Subtle floral lavender notes gently combined with vanilla and espresso."
+        "description": "White espresso base with lavender and vanilla flavor, topped with cold foam."
       },
       {
         "name": "Strawberry Milk Latte",
-        "description": "Nostalgic sweet ripe strawberry infused with chilled milk and espresso."
+        "description": "Espresso-based drink with strawberry flavor, topped with whipped cream and strawberry drizzle."
       }
     ]
   },
@@ -99,19 +101,19 @@ export const menuSections: MenuSection[] = [
     "items": [
       {
         "name": "Vanilla Chai",
-        "description": "Black tea blend with traditional spices sweetened with rich vanilla."
+        "description": "Spiced chai with vanilla flavor."
       },
       {
         "name": "Dirty Caramel Chai",
-        "description": "Spiced chai with a bold espresso shot and buttery caramel sauce."
+        "description": "Spiced chai with espresso shots and caramel flavor, topped with caramel drizzle."
       },
       {
         "name": "Dirty Almond Chai",
-        "description": "A shot of espresso infused with aromatic spiced chai and sweet almond."
+        "description": "Spiced chai with white espresso, almond flavor, and caramel drizzle."
       },
       {
         "name": "Cookie Dough Chai",
-        "description": "Warm chai spices layered with brown sugar and chocolate cookie dough notes."
+        "description": "Spiced chai with cookie dough flavor."
       }
     ]
   },
@@ -127,19 +129,19 @@ export const menuSections: MenuSection[] = [
     "items": [
       {
         "name": "Strawberry Matcha",
-        "description": "Vibrant Japanese green tea layered over sweet pure strawberry purée."
+        "description": "Matcha with strawberry flavor."
       },
       {
         "name": "Honey Vanilla Cinnamon",
-        "description": "Earthy green tea sweetened with wildflower honey, vanilla, and ground cinnamon."
+        "description": "Matcha with vanilla flavor and honey drizzle, topped with cinnamon flakes."
       },
       {
         "name": "Lavender Matcha",
-        "description": "Organic stone-ground green tea infused with light lavender syrup."
+        "description": "Matcha with lavender flavor and cold foam."
       },
       {
         "name": "Matcha Latte",
-        "description": "Traditional pure Japanese matcha whisked and combined with your choice of milk."
+        "description": "Matcha and milk."
       }
     ]
   },
@@ -167,7 +169,7 @@ export const menuSections: MenuSection[] = [
       },
       {
         "name": "Orange & Strawberry Cooler",
-        "description": "Orange, ripe strawberry, and Red Bull."
+        "description": "Red Bull with orange and strawberry flavors."
       },
       {
         "name": "Cocogranate",
@@ -175,7 +177,7 @@ export const menuSections: MenuSection[] = [
       },
       {
         "name": "Brapple",
-        "description": "Blue raspberry, crisp green apple, and Red Bull."
+        "description": "Red Bull with blue raspberry and green apple flavors."
       },
       {
         "name": "Cherry Vanilla",
@@ -199,19 +201,19 @@ export const menuSections: MenuSection[] = [
     "items": [
       {
         "name": "Cozy Coke",
-        "description": "Coca-Cola, vanilla syrup, and half-and-half."
+        "description": "Coke-based drink with vanilla and caramel flavor, topped with half-and-half."
       },
       {
         "name": "Orange Creamsicle",
-        "description": "Orange soda, vanilla, and sweet cream."
+        "description": "Sprite-based drink with orange and vanilla flavor, topped with half-and-half."
       },
       {
         "name": "Sweet Butterscotch",
-        "description": "Root beer, butterscotch syrup, and heavy cream."
+        "description": "Sprite-based drink with butterscotch flavor."
       },
       {
         "name": "Electric Cherry Lime",
-        "description": "Sprite, tart cherry, and fresh lime squeeze."
+        "description": "Sprite-based drink with cherry and lime flavor."
       }
     ]
   },
@@ -227,19 +229,19 @@ export const menuSections: MenuSection[] = [
     "items": [
       {
         "name": "Arnold Palmer",
-        "description": "Black iced tea and freshly pressed lemonade."
+        "description": "Half lemonade, half tea."
       },
       {
         "name": "High Tide",
-        "description": "Blue raspberry and tart lemonade over crushed ice."
+        "description": "Lemonade with blueberry and lavender flavor."
       },
       {
         "name": "Sun-Kissed",
-        "description": "Sweet peach syrup infused into classic lemonade."
+        "description": "Lemonade with red raspberry and passion fruit flavor."
       },
       {
         "name": "Lavender Lemonade",
-        "description": "Organic floral lavender infused into chilled lemonade."
+        "description": "Lemonade with lavender flavor."
       }
     ]
   }

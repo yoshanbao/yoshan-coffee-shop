@@ -1,8 +1,10 @@
 import { menuSections, type MenuSection } from "@/lib/menu-data";
 import type { MenuDrinkCategory } from "@/lib/menu-navigation";
 import { MenuCustomization } from "./MenuCustomization";
+import { isFeaturedCategorySlug } from "@/lib/featured-categories";
+import { SeasonalCategoryDrinks } from "./SeasonalDrinks";
 
-function MenuCategory({ section }: { section: MenuSection }) {
+function MenuCategory({ section, showSeasonal }: { section: MenuSection; showSeasonal: boolean }) {
   return (
     <section id={section.id} className="min-w-0 scroll-mt-20">
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2 border-b border-hairline pb-3">
@@ -28,6 +30,9 @@ function MenuCategory({ section }: { section: MenuSection }) {
           </article>
         ))}
       </div>
+      {showSeasonal && isFeaturedCategorySlug(section.id) && (
+        <SeasonalCategoryDrinks category={section.id} categoryTitle={section.title.replace(/\.$/, "")} />
+      )}
     </section>
   );
 }
@@ -36,7 +41,7 @@ export function MenuGrid({ activeCategory }: { activeCategory?: MenuDrinkCategor
   const sections = activeCategory ? menuSections.filter((section) => section.id === activeCategory) : menuSections;
   return (
     <div className="space-y-10 border-b border-hairline py-8 sm:space-y-14 sm:py-10">
-      {sections.map((section) => <MenuCategory key={section.id} section={section} />)}
+      {sections.map((section) => <MenuCategory key={section.id} section={section} showSeasonal={Boolean(activeCategory)} />)}
       {!activeCategory && <MenuCustomization />}
     </div>
   );

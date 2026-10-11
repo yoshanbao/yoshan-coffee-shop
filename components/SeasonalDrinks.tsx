@@ -1,6 +1,30 @@
 import { getSeasonalDrinks } from "@/lib/menu-data";
 import type { FeaturedCategorySlug } from "@/lib/featured-categories";
 
+/** Seasonal matches stay inside the selected category, after its regular drinks. */
+export function SeasonalCategoryDrinks({ category, categoryTitle }: { category: FeaturedCategorySlug; categoryTitle: string }) {
+  const drinks = getSeasonalDrinks(category);
+  if (!drinks.length) return null;
+
+  return (
+    <div className="mt-6 rounded-xl border border-hairline bg-fall-bg p-4 sm:p-5">
+      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+        <h3 className="text-lg font-bold text-menu-ink">Seasonal {categoryTitle.toLowerCase()}</h3>
+        <span className="text-xs font-semibold uppercase tracking-wider text-fall-accent">Fall selection</span>
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {drinks.map((drink) => (
+          <article key={drink.id} className="min-w-0 rounded-lg border border-hairline/50 bg-white/60 p-4">
+            <h4 className="text-lg font-bold text-menu-ink">{drink.name}</h4>
+            <p className="mt-2 text-sm leading-relaxed text-menu-muted">{drink.description}</p>
+          </article>
+        ))}
+      </div>
+      <p className="mt-4 text-sm text-menu-muted">Seasonal availability may vary. Ask at the stand for seasonal sizes and pricing.</p>
+    </div>
+  );
+}
+
 export function FallDrinks({ activeCategory }: { activeCategory?: FeaturedCategorySlug }) {
   const drinks = getSeasonalDrinks(activeCategory);
   if (!drinks.length) return null;
