@@ -6,5 +6,6 @@ out
 .env*
 !.env.example
 .vercel
+.netlify
 aj_design/
 aj_design.zip
