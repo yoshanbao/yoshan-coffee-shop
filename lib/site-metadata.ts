@@ -26,7 +26,7 @@ export const shouldIndexSite = hasPublicSiteUrl && process.env.NODE_ENV === "pro
 
 /** Layout metadata preserves the root title template while setting route URLs and previews. */
 export function routeMetadata(title: string, description: string, path: string): Metadata {
-  const socialTitle = title === siteName ? `${siteName} | Nampa Coffee` : `${title} | ${siteName}`;
+  const socialTitle = title === siteName ? siteName : `${title} | ${siteName}`;
   return {
     description,
     alternates: { canonical: path },
