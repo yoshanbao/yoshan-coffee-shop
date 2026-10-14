@@ -9,7 +9,7 @@ export function ContactSection() {
         <div className="grid gap-gutter lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-5">
             <div>
-              <span className="mb-2 block text-label-caps uppercase tracking-wider text-charcoal-muted">Communication &amp; Support</span>
+              <span className="mb-2 block text-label-caps uppercase tracking-wider text-secondary">Communication &amp; Support</span>
               <h2 className="mb-4 text-headline-lg-mobile sm:text-3xl lg:text-headline-lg font-headline-lg text-espresso-ink">Get in Touch</h2>
               <p className="text-body-lg leading-relaxed text-charcoal-muted">Have a question about the menu, seasonal drinks, or a custom order? Send us a message or connect with us on social media.</p>
             </div>

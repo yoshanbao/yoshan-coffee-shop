@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId } from "react";
 import { menuNavigationItems, type MenuView } from "@/lib/menu-navigation";
 import { useScrollTrack } from "./hooks/useScrollTrack";
 import { useMenuCategoryScroll } from "./MenuCategoryScrollProvider";
@@ -20,7 +20,6 @@ export function MenuCategoryNavigation({ activeCategory }: { activeCategory?: Me
   const id = useId();
   const { trackRef, canScrollLeft, canScrollRight, scrollTo } = useScrollTrack();
   const { requestScroll, consumeScroll } = useMenuCategoryScroll();
-  const [underline, setUnderline] = useState({ left: 0, top: 0, width: 0 });
   const hasMoreCategories = canScrollLeft || canScrollRight;
   useEffect(() => {
     // Only a category click requests scrolling. Initial loads and browser Back
@@ -44,25 +43,14 @@ export function MenuCategoryNavigation({ activeCategory }: { activeCategory?: Me
       const activeBox = active.getBoundingClientRect();
       scrollTo(track.scrollLeft + activeBox.left - trackBox.left - (track.clientWidth - active.clientWidth) / 2, true);
     }
-    if (!track || !active) return;
-    const updateUnderline = () => setUnderline({
-      left: active.offsetLeft,
-      top: active.offsetTop + active.offsetHeight - 3,
-      width: active.offsetWidth,
-    });
-    updateUnderline();
-    const observer = new ResizeObserver(updateUnderline);
-    observer.observe(track);
-    observer.observe(active);
-    return () => observer.disconnect();
   }, [activeCategory, scrollTo, trackRef]);
 
-  const tab = "motion-control relative inline-flex min-h-12 shrink-0 snap-start items-center justify-center whitespace-nowrap px-3 text-xs font-semibold uppercase tracking-[0.12em] transition-colors duration-200 sm:px-4 sm:text-sm lg:basis-[calc((100%-3.75rem)/6)] lg:snap-none lg:px-1 lg:text-[11px] lg:tracking-[0.06em] xl:text-xs";
-  const selected = "text-primary";
-  const idle = "text-menu-ink/70 hover:text-primary";
+  const tab = "motion-control relative inline-flex min-h-12 shrink-0 snap-start items-center justify-center whitespace-nowrap px-3 text-[13px] font-semibold uppercase tracking-[0.08em] transition-colors duration-200 sm:px-4 sm:text-[14px] lg:basis-[calc((100%-3.75rem)/6)] lg:snap-none lg:px-1 lg:text-[13px] lg:tracking-[0.04em]";
+  const selected = "text-white after:absolute after:inset-x-3 after:bottom-0 after:h-[3px] after:rounded-full after:bg-gold-accent after:content-['']";
+  const idle = "text-white/85 hover:text-white";
 
   return (
-    <nav aria-label="Drink categories" className="sticky top-16 z-30 -mx-4 border-y border-hairline bg-menu-bg/95 px-4 backdrop-blur-md sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <nav aria-label="Drink categories" className="border-y border-white/15 bg-primary">
       <div className="relative">
         <div
           ref={trackRef}
@@ -86,13 +74,12 @@ export function MenuCategoryNavigation({ activeCategory }: { activeCategory?: Me
               {category.name}
             </Link>
           ))}
-          <span aria-hidden="true" className="pointer-events-none absolute h-[3px] rounded-full bg-primary transition-[left,top,width] duration-300 ease-out motion-reduce:transition-none" style={underline} />
         </div>
-        <span aria-hidden="true" className={`pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-menu-bg to-transparent transition-opacity duration-200 lg:hidden ${canScrollLeft ? "opacity-100" : "opacity-0"}`} />
-        <span aria-hidden="true" className={`pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-menu-bg to-transparent transition-opacity duration-200 lg:hidden ${canScrollRight ? "opacity-100" : "opacity-0"}`} />
+        <span aria-hidden="true" className={`pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-primary to-transparent transition-opacity duration-200 lg:hidden ${canScrollLeft ? "opacity-100" : "opacity-0"}`} />
+        <span aria-hidden="true" className={`pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-primary to-transparent transition-opacity duration-200 lg:hidden ${canScrollRight ? "opacity-100" : "opacity-0"}`} />
       </div>
       {hasMoreCategories && (
-        <p id={`${id}-hint`} className="pb-2 pt-1 text-center text-xs font-medium tracking-wide text-menu-muted lg:hidden">
+        <p id={`${id}-hint`} className="pb-2 pt-1 text-center text-[13px] font-medium tracking-wide text-white/75 lg:hidden">
           {canScrollLeft && !canScrollRight ? "Swipe right to see earlier categories" : "Swipe to see more categories"} <span aria-hidden="true">·</span> Tap a category to view drinks
         </p>
       )}

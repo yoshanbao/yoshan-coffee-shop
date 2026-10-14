@@ -4,13 +4,13 @@ import { pageMetadata } from "@/lib/site-metadata";
 
 export const metadata = pageMetadata("Privacy", "How A&J’s Bean Machine’s website handles contact messages and third-party services.", "/privacy");
 
-const externalLinkClass = "inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4";
+const externalLinkClass = "inline-flex min-h-11 items-center font-semibold text-secondary underline underline-offset-4";
 
 export default function PrivacyPage() {
   return (
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="max-w-3xl">
-        <p className="text-sm font-bold uppercase tracking-wider text-primary">Site information</p>
+        <p className="text-sm font-bold uppercase tracking-wider text-secondary">Site information</p>
         <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Privacy</h1>
         <p className="mt-4 text-sm text-charcoal-muted">Last updated: October 11, 2026</p>
         <p className="mt-6 text-lg leading-relaxed text-charcoal-muted">This notice explains the information used by {businessInfo.name}’s website when you browse, use the map, or send us a message.</p>
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           <h2 className="text-2xl font-bold">Questions</h2>
           <p className="mt-3 leading-relaxed text-charcoal-muted">For questions about this notice or your contact message, email <a href={`mailto:${businessInfo.contactEmail}`} className={externalLinkClass}>{businessInfo.contactEmail}</a>. This notice will be updated when the site’s services or data handling change.</p>
         </section>
-        <Link href="/visit" className="navigation-control mt-8 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">Back to Visit Us</Link>
+        <Link href="/visit" className="navigation-control mt-8 inline-flex min-h-11 items-center font-semibold text-secondary underline underline-offset-4">Back to Visit Us</Link>
       </div>
     </main>
   );

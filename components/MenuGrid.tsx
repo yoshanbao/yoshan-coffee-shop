@@ -7,15 +7,15 @@ import { SeasonalCategoryDrinks } from "./SeasonalDrinks";
 function MenuCategory({ section, showSeasonal }: { section: MenuSection; showSeasonal: boolean }) {
   return (
     <section id={section.id} className="min-w-0 scroll-mt-20">
-      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2 border-b border-hairline pb-3">
-        <h2 className="text-2xl font-bold uppercase tracking-tight text-primary sm:text-3xl">{section.title}</h2>
+      <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2 border-b border-primary/25 pb-3">
+        <h2 className="text-2xl font-bold uppercase tracking-tight text-secondary sm:text-3xl">{section.title}</h2>
         <p className="text-xs font-semibold uppercase tracking-wider text-menu-muted">{section.servingNote}</p>
       </div>
-      <ul aria-label={`${section.title.replace(".", "")} sizes and prices`} className="mb-6 grid max-w-xl grid-cols-3 divide-x divide-hairline rounded-lg border border-hairline bg-white text-center">
+      <ul aria-label={`${section.title.replace(".", "")} sizes and prices`} className="mb-6 grid max-w-xl grid-cols-3 divide-x divide-slate-deep/15 rounded-lg border border-slate-deep/15 bg-slate-soft text-center">
         {section.prices.map((price) => {
           const [size, amount] = price.split("oz$");
           return (
-            <li key={price} className="flex flex-col px-2 py-3 text-sm tabular-nums">
+            <li key={price} className="flex flex-col px-2 py-3 text-[15px] tabular-nums">
               <span className="text-menu-muted">{size} oz</span>
               <strong className="text-menu-ink">${amount}</strong>
             </li>
@@ -24,9 +24,9 @@ function MenuCategory({ section, showSeasonal }: { section: MenuSection; showSea
       </ul>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
         {section.items.map((item) => (
-          <article key={item.name} className="min-w-0 rounded-xl border border-border-hairline bg-canvas-white p-5 shadow-sm">
+          <article key={item.name} className="min-w-0 rounded-xl border border-primary/10 bg-canvas-white p-5 shadow-card">
             <h3 className="text-lg font-bold leading-snug text-menu-ink">{item.name}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-menu-muted">{item.description}</p>
+            <p className="mt-2 text-[16px] leading-relaxed text-menu-muted">{item.description}</p>
           </article>
         ))}
       </div>

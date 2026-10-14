@@ -4,13 +4,13 @@ import { pageMetadata } from "@/lib/site-metadata";
 
 export const metadata = pageMetadata("Site Terms", "Information about using A&J’s Bean Machine’s menu, contact form, and external services.", "/terms");
 
-const externalLinkClass = "inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4";
+const externalLinkClass = "inline-flex min-h-11 items-center font-semibold text-secondary underline underline-offset-4";
 
 export default function SiteTermsPage() {
   return (
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="max-w-3xl">
-        <p className="text-sm font-bold uppercase tracking-wider text-primary">Site information</p>
+        <p className="text-sm font-bold uppercase tracking-wider text-secondary">Site information</p>
         <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">Site terms</h1>
         <p className="mt-4 text-sm text-charcoal-muted">Last updated: October 11, 2026</p>
         <p className="mt-6 text-lg leading-relaxed text-charcoal-muted">This website shares the menu, location, and contact information for {businessInfo.name}. It currently provides information and inquiries rather than online checkout.</p>
@@ -36,8 +36,8 @@ export default function SiteTermsPage() {
           <p className="mt-3 leading-relaxed text-charcoal-muted">Directions, review, and social links open external websites with their own terms. To report an incorrect detail or ask about the website, email <a href={`mailto:${businessInfo.contactEmail}`} className={externalLinkClass}>{businessInfo.contactEmail}</a>.</p>
         </section>
         <div className="mt-8 flex flex-wrap gap-x-6">
-          <Link href="/menu" className="navigation-control inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">Explore the menu</Link>
-          <Link href="/privacy" className="navigation-control inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">Privacy information</Link>
+          <Link href="/menu" className="navigation-control inline-flex min-h-11 items-center font-semibold text-secondary underline underline-offset-4">Explore the menu</Link>
+          <Link href="/privacy" className="navigation-control inline-flex min-h-11 items-center font-semibold text-secondary underline underline-offset-4">Privacy information</Link>
         </div>
       </div>
     </main>

@@ -45,7 +45,7 @@ export function Carousel({ label, children, inverse = false }: CarouselProps) {
         id={id}
         tabIndex={0}
         aria-label={`${label}: swipe, drag, or use the arrow keys to browse`}
-        className={`no-scrollbar relative flex snap-x snap-mandatory scroll-px-2 gap-4 overflow-x-auto overscroll-x-contain px-2 py-3 sm:gap-6 ${dragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
+        className={`no-scrollbar relative flex snap-x snap-mandatory scroll-px-2 gap-4 overflow-x-auto overscroll-x-contain px-2 pb-7 pt-3 sm:gap-6 ${dragging ? "cursor-grabbing select-none" : "cursor-grab"}`}
         onKeyDown={(event) => {
           if (event.target !== event.currentTarget) return;
           if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
@@ -95,7 +95,8 @@ export function Carousel({ label, children, inverse = false }: CarouselProps) {
           </div>
         ))}
       </div>
-      <div className="mt-4 flex items-center justify-between gap-4 px-2">
+      {/* Extra bottom padding on the track keeps card shadows from being clipped; spacing to the controls is unchanged. */}
+      <div className="flex items-center justify-between gap-4 px-2">
         <p className={`text-xs ${inverse ? "text-on-primary-container" : "text-charcoal-muted"}`}>Swipe or use the arrows to explore.</p>
         <div className="flex shrink-0 gap-2">
           <ScrollArrow direction="left" label={`Previous ${label}`} controls={id} disabled={!canScrollLeft} onClick={() => advance(-1)} inverse={inverse} />

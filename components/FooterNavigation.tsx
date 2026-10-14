@@ -24,7 +24,7 @@ export function FooterNavigation() {
   }, [pathname]);
 
   return (
-    <nav aria-label="Footer navigation" className="mt-3 flex flex-col gap-2 text-sm">
+    <nav aria-label="Footer navigation" className="-ml-3 mt-2 flex flex-col text-sm">
       {links.map((link) => (
         <NavigationLink
           key={link.href}

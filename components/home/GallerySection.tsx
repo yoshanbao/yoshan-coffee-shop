@@ -1,34 +1,31 @@
 import Image from "next/image";
-import { Carousel } from "@/components/Carousel";
 
 const photos = [
-  { src: "/images/process.png", alt: "Fresh coffee grounds in an espresso portafilter beneath the grinder", caption: "The daily craft" },
-  { src: "/images/strawbetter-matcha.png", alt: "Iced Strawbetter Matcha with green matcha and pink strawberry layers", caption: "Strawbetter Matcha" },
-  { src: "/images/autumn-spark.png", alt: "Iced orange and cranberry Autumn Spark drink", caption: "Autumn Spark" },
-  { src: "/images/brown-sugar-cinnamon-latte.png", alt: "Iced Brown Sugar Cinnamon Latte topped with whipped cream", caption: "Brown Sugar Cinnamon Latte" },
+  { src: "/images/inside_house.jpg", alt: "The colorful mural inside A&J’s Bean Machine", caption: "Inside the shop" },
+  { src: "/images/coffee_heart.png", alt: "A drink topped with foam and a caramel heart", caption: "A little love in every cup" },
+  { src: "/images/enjoy_cup.jpg", alt: "Drinks and flowers in front of the shop’s Enjoy Life mural", caption: "A bright spot in the day" },
+  { src: "/images/coffee_hand.png", alt: "A freshly made iced coffee held inside the shop", caption: "Made to take with you" },
 ];
 
 export function GallerySection() {
   return (
-    <section id="craft" className="border-b border-border-hairline bg-sand-surface py-12 sm:py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col justify-between gap-4 lg:flex-row lg:items-end">
-          <div>
-            <span className="mb-3 inline-block rounded-lg bg-pale-mint px-2.5 py-1 text-label-caps font-bold uppercase tracking-wider text-primary">Daily moments</span>
-            <h2 className="text-headline-lg-mobile tracking-tight text-espresso-ink sm:text-3xl lg:text-headline-lg">Craft in every cup.</h2>
-          </div>
-          <p className="text-body-md text-charcoal-muted">A look at our coffee process and a few drinks from the menu.</p>
+    <section id="craft" className="border-b border-border-hairline bg-sand-surface py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="mb-9 text-center">
+          <span className="eyebrow">Around the shop</span>
+          <h2 className="mt-3 font-editorial text-[clamp(2.2rem,3.1vw,3.5rem)] font-bold leading-[1.14] tracking-[-0.045em] text-espresso-ink">A look inside A&amp;J’s.</h2>
+          <p className="mt-3 text-[16px] leading-[1.6] text-charcoal-muted">The shop, the mural, and drinks made for your day.</p>
         </div>
-        <Carousel label="craft photos">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {photos.map((photo) => (
-            <figure key={photo.src} className="carousel-card group h-full overflow-hidden rounded-xl border border-border-hairline bg-canvas-white shadow-sm">
-              <div className="relative aspect-[4/3] max-h-64 overflow-hidden sm:max-h-80 lg:max-h-none">
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 639px) 85vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 384px" className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.02]" />
+            <figure key={photo.src} className="group">
+              <div className="relative aspect-[4/5] overflow-hidden bg-canvas-white">
+                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 639px) 50vw, (max-width: 1023px) 45vw, 25vw" className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.025]" />
               </div>
-              <figcaption className="px-4 py-4 text-sm font-semibold text-espresso-ink">{photo.caption}</figcaption>
+              <figcaption className="mt-3 border-t border-border-hairline pt-2 text-[13px] font-medium leading-[1.4] text-espresso-ink sm:text-[14px]">{photo.caption}</figcaption>
             </figure>
           ))}
-        </Carousel>
+        </div>
       </div>
     </section>
   );

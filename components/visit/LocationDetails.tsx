@@ -6,7 +6,7 @@ export function LocationDetails() {
     <section className="border-b border-border-hairline bg-sand-surface" id="location">
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-12 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="rounded-xl border border-border-hairline bg-canvas-white p-4 sm:p-6 lg:col-span-7 lg:p-8">
-          <span className="text-label-caps font-bold uppercase tracking-wider text-primary">Find us</span>
+          <span className="text-label-caps font-bold uppercase tracking-wider text-secondary">Find us</span>
           <h2 className="mt-3 text-headline-lg-mobile sm:text-3xl lg:text-headline-lg font-headline-lg text-espresso-ink">A&amp;J’s Bean Machine</h2>
           <address className="mt-2 not-italic text-body-lg text-charcoal-muted">{businessInfo.address}</address>
           <div className="mt-6 overflow-hidden rounded-lg border border-border-hairline">
@@ -30,17 +30,17 @@ export function LocationDetails() {
           <h2 className="text-headline-sm font-headline-sm text-espresso-ink">Plan your visit</h2>
           <dl className="mt-6 space-y-6">
             <div className="border-t border-border-hairline pt-4">
-              <dt className="text-label-caps font-bold uppercase tracking-wider text-primary">Hours</dt>
+              <dt className="text-label-caps font-bold uppercase tracking-wider text-secondary">Hours</dt>
               <dd className="mt-2 text-body-md font-semibold text-espresso-ink">{businessInfo.hours}</dd>
               <dd className="mt-1 text-body-sm text-charcoal-muted">{businessInfo.sundayHours}</dd>
             </div>
             <div className="border-t border-border-hairline pt-4">
-              <dt className="text-label-caps font-bold uppercase tracking-wider text-primary">Ordering</dt>
+              <dt className="text-label-caps font-bold uppercase tracking-wider text-secondary">Ordering</dt>
               <dd className="mt-2 text-body-md text-espresso-ink">Visit the stand for coffee and handcrafted drinks.</dd>
             </div>
             <div className="border-t border-border-hairline pt-4">
-              <dt className="text-label-caps font-bold uppercase tracking-wider text-primary">Customer reviews</dt>
-              <dd className="mt-2 text-body-md text-espresso-ink"><a href={businessInfo.reviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">Read reviews on Google Maps</a></dd>
+              <dt className="text-label-caps font-bold uppercase tracking-wider text-secondary">Customer reviews</dt>
+              <dd className="mt-2 text-body-md text-espresso-ink"><a href={businessInfo.reviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-secondary underline underline-offset-4">Read reviews on Google Maps</a></dd>
             </div>
           </dl>
           <a

@@ -16,11 +16,11 @@ export function SeasonalCategoryDrinks({ category, categoryTitle }: { category: 
         {drinks.map((drink) => (
           <article key={drink.id} className="min-w-0 rounded-lg border border-hairline/50 bg-white/60 p-4">
             <h4 className="text-lg font-bold text-menu-ink">{drink.name}</h4>
-            <p className="mt-2 text-sm leading-relaxed text-menu-muted">{drink.description}</p>
+            <p className="mt-2 text-[16px] leading-relaxed text-menu-muted">{drink.description}</p>
           </article>
         ))}
       </div>
-      <p className="mt-4 text-sm text-menu-muted">Seasonal availability may vary. Ask at the stand for seasonal sizes and pricing.</p>
+      <p className="mt-4 text-[15px] text-menu-muted">Seasonal availability may vary. Ask at the stand for seasonal sizes and pricing.</p>
     </div>
   );
 }
@@ -41,13 +41,13 @@ export function FallDrinks({ activeCategory }: { activeCategory?: FeaturedCatego
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
         {drinks.map((drink) => (
           <article key={drink.id} className="min-w-0 rounded-lg border border-hairline/50 bg-white/60 p-4">
-            <span className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-fall-accent">{drink.categoryLabel}</span>
+            <span className="mb-1 block text-[12px] font-bold uppercase tracking-wider text-fall-accent">{drink.categoryLabel}</span>
             <h3 className="text-lg font-bold text-menu-ink">{drink.name}</h3>
-            <p className="mt-1 text-xs leading-relaxed text-menu-muted">{drink.description}</p>
+            <p className="mt-1 text-[16px] leading-relaxed text-menu-muted">{drink.description}</p>
           </article>
         ))}
       </div>
-      <p className="mt-8 border-t border-hairline pt-4 text-center text-xs text-menu-muted">Seasonal availability may vary. Visit the shop for current sizes and pricing.</p>
+      <p className="mt-8 border-t border-hairline pt-4 text-center text-[15px] text-menu-muted">Seasonal availability may vary. Visit the shop for current sizes and pricing.</p>
     </section>
   );
 }

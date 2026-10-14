@@ -2,7 +2,8 @@ import { businessInfo } from "@/lib/business-info";
 import Link from "next/link";
 import { ContactSubmission } from "./ContactSubmission";
 
-const fieldClass = "min-h-11 w-full rounded-lg border border-border-hairline bg-canvas-white px-3.5 py-2.5 text-base text-espresso-ink focus:border-primary";
+// Inputs keep a firmer border than the decorative hairlines so the fields stay easy to find.
+const fieldClass = "min-h-11 w-full rounded-lg border border-field-border bg-canvas-white px-3.5 py-2.5 text-base text-espresso-ink shadow-[inset_0_1px_1px_rgba(40,28,18,0.04)] transition-colors hover:border-charcoal-muted/50 focus:border-primary";
 const labelClass = "mb-1.5 block text-label-caps uppercase tracking-wider text-charcoal-muted";
 
 /** Native POST keeps CAPTCHA and delivery with FormSubmit; no email credentials reach the browser. */

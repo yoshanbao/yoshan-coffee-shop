@@ -65,7 +65,7 @@ export function MobileNavigation({ links, mapsUrl }: {
         aria-controls="mobile-navigation"
         aria-haspopup="dialog"
         onClick={openMenu}
-        className="navigation-control navigation-control-outlined inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border-hairline text-primary"
+        className="navigation-control navigation-control-outlined inline-flex h-11 w-11 items-center justify-center rounded-full border border-border-hairline bg-canvas-white text-primary shadow-card"
       >
         <span className="material-symbols-outlined" aria-hidden="true">menu</span>
       </button>
@@ -94,8 +94,8 @@ export function MobileNavigation({ links, mapsUrl }: {
           <button type="button" tabIndex={-1} aria-label="Close navigation backdrop" onClick={closeMenu} className="absolute inset-0 h-full w-full cursor-default" />
           <div className="mobile-menu-panel absolute inset-y-0 right-0 flex h-full w-[min(90vw,24rem)] flex-col overflow-y-auto bg-canvas-white px-6 py-5 shadow-xl">
             <div className="flex items-center justify-between gap-4 border-b border-border-hairline pb-5">
-              <h2 id="mobile-navigation-title" className="text-lg font-bold">Explore A&amp;J’s</h2>
-              <button ref={closeButtonRef} type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border-hairline text-primary">
+              <h2 id="mobile-navigation-title" className="font-editorial text-[20px] font-bold tracking-[-0.04em]">Explore A&amp;J’s</h2>
+              <button ref={closeButtonRef} type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border-hairline bg-canvas-white text-primary shadow-card">
                 <span className="material-symbols-outlined" aria-hidden="true">close</span>
               </button>
             </div>
@@ -106,7 +106,7 @@ export function MobileNavigation({ links, mapsUrl }: {
                 </NavigationLink>
               ))}
             </nav>
-            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="navigation-control navigation-control-filled mt-auto inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 font-semibold text-white">
+            <a href={mapsUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="btn btn-primary mt-auto min-h-12">
               <span className="material-symbols-outlined" aria-hidden="true">directions</span>
               Get Directions
             </a>

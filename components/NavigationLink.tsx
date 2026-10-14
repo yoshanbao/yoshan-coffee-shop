@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import type { MouseEventHandler, ReactNode } from "react";
 
 const styles = {
-  desktop: "min-h-11 px-3 text-xs font-bold uppercase tracking-wider",
-  mobile: "min-h-12 px-4 py-3 text-lg font-semibold",
-  footer: "min-h-11 w-fit max-w-full px-3 py-2 text-sm font-semibold",
+  desktop: "min-h-11 px-3 text-[15px] font-medium tracking-[-0.005em]",
+  mobile: "min-h-12 px-4 py-3 text-[18px] font-semibold tracking-[-0.01em]",
+  footer: "min-h-11 w-fit max-w-full px-3 py-2 text-[15px] font-medium text-charcoal-muted",
 };
 
 export function NavigationLink({ href, children, variant = "desktop", onClick, selected = false }: {

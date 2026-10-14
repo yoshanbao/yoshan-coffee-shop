@@ -25,12 +25,15 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
+  allowedDevOrigins: ["127.0.0.1"],
   outputFileTracingRoot: process.cwd(),
   turbopack: { root: process.cwd() },
   poweredByHeader: false,
   images: {
     // Site images are local; external image hosts are not allowed.
     maximumRedirects: 0,
+    qualities: [75, 90],
     dangerouslyAllowLocalIP: false,
     dangerouslyAllowSVG: false,
   },

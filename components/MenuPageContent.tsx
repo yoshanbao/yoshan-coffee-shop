@@ -15,10 +15,14 @@ export function MenuPageContent({ activeView }: { activeView?: MenuView }) {
 
   return (
     <main id="main-content" tabIndex={-1} className="min-w-0 min-h-screen bg-menu-bg text-menu-ink">
-      <div className="mx-auto max-w-7xl px-4 pb-12 pt-8 sm:px-6 sm:pt-12 lg:px-8 lg:pb-24">
-        <MenuIntro {...intro} />
-        <div id="menu-category-start" aria-hidden="true" />
-        <MenuCategoryNavigation activeCategory={activeView} />
+      <MenuIntro {...intro} />
+      <div id="menu-category-start" aria-hidden="true" />
+      <div className="sticky top-[62px] z-30 bg-primary">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <MenuCategoryNavigation activeCategory={activeView} />
+        </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8 lg:pb-24">
         {activeView === "customize" ? (
           <div className="py-8 sm:py-10"><MenuCustomization heading="Drink options." /></div>
         ) : (

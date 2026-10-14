@@ -1,73 +1,37 @@
-import { businessInfo } from "@/lib/business-info";
+import Image from "next/image";
+import Link from "next/link";
 
-export function AboutSection() { return (
-<section className="bg-sand-surface py-12 sm:py-16 lg:py-24 border-b border-border-hairline" id="about">
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div className="max-w-2xl mb-14">
-<span className="px-2.5 py-1 bg-sand-surface-muted text-charcoal-muted rounded-lg text-label-caps font-label-caps uppercase tracking-wider font-bold inline-block mb-3">
-          NEIGHBORHOOD ROOTS
-        </span>
-<h2 className="text-headline-lg-mobile sm:text-3xl lg:text-headline-lg font-headline-lg text-espresso-ink tracking-tight">
-          Coffee served with friendly local service.
-        </h2>
-<p className="text-body-lg font-body-lg text-charcoal-muted mt-3">
-          At A&amp;J’s Bean Machine, every order is met with welcoming staff, efficient preparation, and an easygoing atmosphere right on S Happy Valley Road.
-        </p>
-</div>
+const details = [
+  { title: "Friendly Approachable Service", text: "Stop in for a friendly welcome and a drink made for your day." },
+  { title: "Convenient Southeast Nampa Location", text: "Right on S Happy Valley Rd, easy to stop by on your way to work or through the neighborhood." },
+  { title: "Find a drink for your day", text: "Explore coffee, chai, matcha, infused Red Bull drinks, and sodas with sizes and prices listed on the menu." },
+];
 
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-<div className="bg-canvas-white p-5 sm:p-6 lg:p-8 rounded-lg border border-border-hairline flex flex-col justify-between">
-<div>
-<div className="w-12 h-12 rounded-lg bg-pale-mint flex items-center justify-center text-primary mb-6">
-<span className="material-symbols-outlined text-[26px]" data-icon="sentiment_satisfied">sentiment_satisfied</span>
-</div>
-<h3 className="text-headline-sm font-headline-sm text-espresso-ink mb-3">
-              Friendly Approachable Service
-            </h3>
-<p className="text-body-md font-body-md text-charcoal-muted leading-relaxed">
-              Stop in for a friendly welcome and a drink made for your day.
-            </p>
-</div>
-<div className="pt-6 mt-6 border-t border-border-hairline text-label-caps font-label-caps uppercase tracking-wider text-outline font-semibold">
-            <a href={businessInfo.reviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">Read customer reviews on Google Maps</a>
+export function AboutSection() {
+  return (
+    <section id="about" className="border-b border-border-hairline bg-canvas-white py-16 sm:py-20">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-20">
+        <figure>
+          <div className="relative aspect-[5/4] overflow-hidden bg-sand-surface">
+            <Image src="/images/shop_house_front.jpg" alt="A&J’s Bean Machine storefront in Southeast Nampa" fill sizes="(max-width: 1023px) 100vw, 50vw" className="object-cover" />
           </div>
-</div>
-
-<div className="bg-canvas-white p-5 sm:p-6 lg:p-8 rounded-lg border border-border-hairline flex flex-col justify-between">
-<div>
-<div className="w-12 h-12 rounded-lg bg-sand-surface-muted flex items-center justify-center text-secondary mb-6">
-<span className="material-symbols-outlined text-[26px]" data-icon="pin_drop">pin_drop</span>
-</div>
-<h3 className="text-headline-sm font-headline-sm text-espresso-ink mb-3">
-              Convenient Southeast Nampa Location
-            </h3>
-<p className="text-body-md font-body-md text-charcoal-muted leading-relaxed">
-              Situated right on S Happy Valley Rd, making it a frictionless neighborhood stop on your regular commute.
-            </p>
-</div>
-<div className="pt-6 mt-6 border-t border-border-hairline text-label-caps font-label-caps uppercase tracking-wider text-outline font-semibold">
-            3209 S Happy Valley Rd
+          <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.1em] text-charcoal-muted">The neighborhood stand · Southeast Nampa</figcaption>
+        </figure>
+        <div>
+          <span className="eyebrow">Neighborhood roots</span>
+          <h2 className="mt-3 max-w-[580px] font-editorial text-[clamp(2.2rem,3.1vw,3.5rem)] font-bold leading-[1.14] tracking-[-0.045em] text-espresso-ink">Coffee served with friendly local service.</h2>
+          <p className="mt-5 max-w-[530px] text-[16px] leading-[1.7] text-charcoal-muted">At A&amp;J’s Bean Machine, every order is met with welcoming staff, efficient preparation, and an easygoing atmosphere right on S Happy Valley Road.</p>
+          <div className="mt-7 border-t border-border-hairline">
+            {details.map((detail) => (
+              <div key={detail.title} className="grid gap-1 border-b border-border-hairline py-3 sm:grid-cols-[190px_1fr] sm:gap-5">
+                <h3 className="text-[15px] font-semibold leading-[1.45] text-espresso-ink">{detail.title}</h3>
+                <p className="text-[15px] leading-[1.55] text-charcoal-muted">{detail.text}</p>
+              </div>
+            ))}
           </div>
-</div>
-
-<div className="bg-canvas-white p-5 sm:p-6 lg:p-8 rounded-lg border border-border-hairline flex flex-col justify-between">
-<div>
-<div className="w-12 h-12 rounded-lg bg-pale-mint flex items-center justify-center text-primary mb-6">
-<span className="material-symbols-outlined text-[26px]" data-icon="savings">savings</span>
-</div>
-<h3 className="text-headline-sm font-headline-sm text-espresso-ink mb-3">
-              Find a drink for your day
-            </h3>
-<p className="text-body-md font-body-md text-charcoal-muted leading-relaxed">
-              Explore coffee, chai, matcha, infused Red Bull drinks, and sodas with sizes and prices listed on the menu.
-            </p>
-</div>
-<div className="pt-6 mt-6 border-t border-border-hairline text-label-caps font-label-caps uppercase tracking-wider text-outline font-semibold">
-            Explore the Menu
-          </div>
-</div>
-</div>
-</div>
-</section>
-); }
+          <Link href="/story" className="navigation-control mt-6 inline-flex min-h-11 items-center border-b border-primary/50 text-[15px] font-semibold text-primary">Read our story <span aria-hidden="true" className="ml-2">→</span></Link>
+        </div>
+      </div>
+    </section>
+  );
+}

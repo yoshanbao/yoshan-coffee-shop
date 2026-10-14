@@ -1,67 +1,31 @@
 import Image from "next/image";
 
-export function FavoritesSection() { return (
-<section className="bg-canvas-white py-12 sm:py-16 lg:py-24 border-b border-border-hairline" id="favorites">
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-<div className="lg:col-span-7 space-y-6">
-<span className="px-2.5 py-1 bg-peach-accent text-espresso-ink rounded-lg text-label-caps font-label-caps uppercase tracking-wider font-bold inline-block">
-            COMMUNITY HIGHLIGHTS
-          </span>
-<h2 className="text-headline-lg-mobile sm:text-3xl lg:text-headline-lg font-headline-lg text-espresso-ink tracking-tight">
-            Find a new favorite for your morning commute.
-          </h2>
-<p className="text-body-lg font-body-lg text-charcoal-muted leading-relaxed">
-            Whether you are on your way through Southeast Nampa, heading into the workday, or taking a relaxed midday break, A&amp;J’s Bean Machine offers approachable, handcrafted drinks tailored to your taste.
-          </p>
-
-<div className="pt-2 space-y-3">
-<div className="p-4 bg-sand-surface rounded-lg border border-border-hairline flex items-start gap-4">
-<span className="material-symbols-outlined text-primary text-[24px] mt-0.5" data-icon="local_cafe">local_cafe</span>
-<div>
-<div className="flex flex-wrap items-center gap-2 mb-1">
-<span className="text-title-md font-title-md font-bold text-espresso-ink">Dirty Chai</span>
-<span className="px-2 py-0.5 bg-sand-surface-muted text-charcoal-muted rounded-lg text-label-caps font-label-caps uppercase tracking-wider font-semibold">
-                    Chai & espresso
-                  </span>
-</div>
-<p className="text-body-sm font-body-sm text-charcoal-muted">
-                  Spiced chai paired with espresso. Explore our Dirty Caramel Chai and Dirty Almond Chai on the menu.
-                </p>
-</div>
-</div>
-<div className="p-4 bg-sand-surface rounded-lg border border-border-hairline flex items-start gap-4">
-<span className="material-symbols-outlined text-secondary text-[24px] mt-0.5" data-icon="cookie">cookie</span>
-<div>
-<div className="flex flex-wrap items-center gap-2 mb-1">
-<span className="text-title-md font-title-md font-bold text-espresso-ink">Cookie Dough Chai</span>
-<span className="px-2 py-0.5 bg-sand-surface-muted text-charcoal-muted rounded-lg text-label-caps font-label-caps uppercase tracking-wider font-semibold">
-                    Sweet & spiced
-                  </span>
-</div>
-<p className="text-body-sm font-body-sm text-charcoal-muted">
-                  Spiced chai with cookie dough flavor for a sweet, comforting drink.
-                </p>
-</div>
-</div>
-</div>
-</div>
-
-<div className="mx-auto w-full max-w-lg lg:col-span-5 lg:max-w-none relative">
-<div className="relative bg-sand-surface p-4 rounded-xl border border-border-hairline">
-<div className="relative mx-auto aspect-[4/5] w-full max-w-[12.8rem] max-h-64 sm:max-w-64 sm:max-h-80 lg:max-w-none lg:max-h-none rounded-lg overflow-hidden bg-sand-surface-muted">
-<Image className="object-cover" alt="Iced Milkyway Mocha with whipped topping and chocolate pieces" src="/images/milkway_mocha.png" fill sizes="(max-width: 639px) 205px, (max-width: 1023px) 256px, (max-width: 1279px) 42vw, 480px"/>
-</div>
-
-<div className="absolute -top-3 right-2 sm:-right-3 w-20 h-20 rounded-full bg-peach-accent text-espresso-ink border-2 border-canvas-white flex flex-col items-center justify-center text-center p-2 shadow-[0_4px_12px_rgba(20,21,20,0.05)]">
-<span className="text-[9px] font-bold uppercase tracking-wider leading-none">Drink</span>
-<span className="text-title-md font-bold leading-tight">Spotlight</span>
-<span className="text-[8px] uppercase tracking-tight">Mocha</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-); }
+export function FavoritesSection() {
+  return (
+    <section id="favorites" className="border-b border-white/10 bg-slate-deep py-16 text-white sm:py-20">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20">
+        <div>
+          <span className="eyebrow text-gold-accent">Community highlights</span>
+          <h2 className="mt-3 max-w-[580px] font-editorial text-[clamp(2.2rem,3.1vw,3.5rem)] font-bold leading-[1.14] tracking-[-0.045em] text-white">Find a new favorite for your morning commute.</h2>
+          <p className="mt-5 max-w-[540px] text-[16px] leading-[1.7] text-white/80">Whether you are on your way through Southeast Nampa, heading into the workday, or taking a relaxed midday break, A&amp;J’s Bean Machine offers approachable, handcrafted drinks tailored to your taste.</p>
+          <div className="mt-8 border-t border-white/20">
+            <div className="border-b border-white/20 py-4">
+              <div className="flex items-baseline justify-between gap-4"><h3 className="font-editorial text-[23px] font-bold tracking-[-0.035em] text-white">Milkyway Mocha</h3><span className="font-mono text-[11px] uppercase tracking-[0.1em] text-white/80">Chocolate &amp; espresso</span></div>
+              <p className="mt-1 text-[15px] leading-[1.6] text-white/75">An iced mocha swirled with chocolate, finished with whipped cream and chocolate pieces.</p>
+            </div>
+            <div className="border-b border-white/20 py-4">
+              <div className="flex items-baseline justify-between gap-4"><h3 className="font-editorial text-[23px] font-bold tracking-[-0.035em] text-white">Cookie Dough Chai</h3><span className="font-mono text-[11px] uppercase tracking-[0.1em] text-white/80">Sweet &amp; spiced</span></div>
+              <p className="mt-1 text-[15px] leading-[1.6] text-white/75">Spiced chai with cookie dough flavor for a sweet, comforting drink.</p>
+            </div>
+          </div>
+        </div>
+        <figure>
+          <div className="relative aspect-[596/477] overflow-hidden bg-gold-accent">
+            <Image src="/images/milkyway-mocha-gold-hd.png" alt="Iced Milkyway Mocha with whipped topping and chocolate pieces" fill sizes="(max-width: 1023px) 100vw, 50vw" quality={90} className="object-cover" />
+          </div>
+          <figcaption className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-white/80">A drink for the afternoon · Milkyway Mocha</figcaption>
+        </figure>
+      </div>
+    </section>
+  );
+}
