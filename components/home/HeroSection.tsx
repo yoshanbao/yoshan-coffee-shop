@@ -5,16 +5,19 @@ import { businessInfo } from "@/lib/business-info";
 export function HeroSection() {
   return (
     <section id="hero" className="relative isolate overflow-hidden bg-primary-strong text-white">
-      <Image
-        src="/images/coffee_v2_bg.png"
-        alt="A&J’s Bean Machine iced coffee on a table with a green outdoor backdrop"
-        fill
-        priority
-        sizes="100vw"
-        quality={90}
-        className="-z-20 object-cover object-[5%_center] sm:object-[28%_center] lg:object-[center_60%]"
-        style={{ filter: "contrast(1.055) saturate(1.045)" }}
-      />
+      <div className="absolute inset-x-0 top-0 -z-20 h-[125vw] max-h-[500px] overflow-hidden sm:inset-0 sm:h-full sm:max-h-none">
+        <Image
+          src="/images/coffee_v2_bg.png"
+          alt="A&J’s Bean Machine iced coffee on a table with a green outdoor backdrop"
+          fill
+          priority
+          sizes="100vw"
+          quality={90}
+          className="object-cover object-[5%_center] sm:object-[28%_center] lg:object-[center_60%]"
+          style={{ filter: "contrast(1.055) saturate(1.045)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary-strong sm:hidden" aria-hidden="true" />
+      </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-primary-strong/80 via-primary-strong/45 to-transparent lg:hidden" aria-hidden="true" />
       <div
         className="absolute inset-0 -z-10 hidden lg:block"
