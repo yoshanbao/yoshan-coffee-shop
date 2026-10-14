@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   ...pageMetadata("A&J’s Bean Machine", "Coffee, chai, matcha, and handcrafted drinks at 3209 S Happy Valley Rd in Southeast Nampa, Idaho.", "/"),
   metadataBase: siteUrl,
   title: { default: "A&J’s Bean Machine", template: "%s | A&J’s Bean Machine" },
-  icons: { icon: [{ url: "/images/ajs-bean-machine-logo.png", type: "image/png" }] },
   applicationName: businessInfo.name,
   robots: { index: shouldIndexSite, follow: shouldIndexSite },
 };
