@@ -14,8 +14,12 @@ export function ContactSection() {
               <p className="text-body-lg leading-relaxed text-charcoal-muted">Have a question about the menu, seasonal drinks, or a custom order? Send us a message or connect with us on social media.</p>
             </div>
             <div className="rounded-xl border border-border-hairline bg-sand-surface p-5">
-              <h3 className="text-label-caps font-semibold uppercase tracking-wider text-charcoal-muted">Email</h3>
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-label-caps font-semibold uppercase tracking-wider text-charcoal-muted">Email</h3>
+                <span className="rounded-full border border-border-hairline bg-canvas-white px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-charcoal-muted">Demo</span>
+              </div>
               <a href={`mailto:${businessInfo.contactEmail}`} className="mt-2 inline-flex min-h-11 items-center break-all text-body-md font-semibold text-primary underline underline-offset-2">{businessInfo.contactEmail}</a>
+              <p className="mt-2 text-body-sm text-charcoal-muted">This email address is included for website demonstration purposes.</p>
             </div>
             <div className="rounded-xl border border-border-hairline bg-sand-surface p-5">
               <h3 className="text-label-caps font-semibold uppercase tracking-wider text-charcoal-muted">Visit the shop</h3>
