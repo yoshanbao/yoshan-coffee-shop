@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "build:cloudflare": "SITE_URL=https://aj-bean-machine.kingyohantomas.workers.dev opennextjs-cloudflare build",
+    "build:cloudflare": "SITE_URL=https://yoshan-coffee.yohanntomas2.workers.dev opennextjs-cloudflare build",
     "preview:cloudflare": "npm run build:cloudflare && opennextjs-cloudflare preview",
     "deploy:cloudflare": "npm run build:cloudflare && opennextjs-cloudflare deploy",
     "start": "next start",

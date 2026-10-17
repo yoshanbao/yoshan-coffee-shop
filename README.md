@@ -19,7 +19,7 @@ npm run start
 
 ## Cloudflare Workers deployment
 
-The site is deployed at https://aj-bean-machine.kingyohantomas.workers.dev using OpenNext. The dynamic Menu route requires a Worker; a static Pages export would not serve it correctly.
+The primary Cloudflare Workers target is `yoshan-coffee` in the `yohanntomas2@gmail.com` account at https://yoshan-coffee.yohanntomas2.workers.dev. The earlier `aj-bean-machine` deployment in the other account has its configuration preserved in `wrangler.kingyohantomas.jsonc`. The dynamic Menu route requires a Worker; a static Pages export would not serve it correctly.
 
 ```bash
 npm ci

@@ -1,11 +1,11 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "aj-bean-machine",
+  "name": "yoshan-coffee",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-17",
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
-    "SITE_URL": "https://aj-bean-machine.kingyohantomas.workers.dev"
+    "SITE_URL": "https://yoshan-coffee.yohanntomas2.workers.dev"
   },
   "assets": {
     "directory": ".open-next/assets",
