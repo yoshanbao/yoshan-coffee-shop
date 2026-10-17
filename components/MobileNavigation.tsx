@@ -95,7 +95,7 @@ export function MobileNavigation({ links, mapsUrl }: {
           <div className="mobile-menu-panel absolute inset-y-0 right-0 flex h-full w-[min(90vw,24rem)] flex-col overflow-y-auto bg-canvas-white px-6 py-5 shadow-xl">
             <div className="flex items-center justify-between gap-4 border-b border-border-hairline pb-5">
               <h2 id="mobile-navigation-title" className="font-editorial text-[20px] font-bold tracking-[-0.04em]">Explore A&amp;J’s</h2>
-              <button ref={closeButtonRef} type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border-hairline bg-canvas-white text-primary shadow-card">
+              <button ref={closeButtonRef} type="button" aria-label="Close navigation menu" onClick={closeMenu} className="navigation-control navigation-control-outlined mobile-menu-close inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border-hairline bg-canvas-white text-primary shadow-card">
                 <span className="material-symbols-outlined" aria-hidden="true">close</span>
               </button>
             </div>

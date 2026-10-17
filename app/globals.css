@@ -58,6 +58,7 @@ html { scroll-padding-top: 4.5rem; }
     .navigation-control-outlined:hover { @apply text-secondary border-secondary; }
     .navigation-control-filled:hover { @apply text-pale-mint; }
   }
+  .mobile-menu-close:is(:hover, :focus-visible) { text-decoration-line: none; }
   .navigation-link:active, .navigation-control:active {
     transform: scale(0.97);
   }
