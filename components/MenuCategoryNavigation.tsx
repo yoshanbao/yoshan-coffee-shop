@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useId } from "react";
+import { useEffect, useId, type MouseEvent } from "react";
 import { menuNavigationItems, type MenuView } from "@/lib/menu-navigation";
 import { useScrollTrack } from "./hooks/useScrollTrack";
-import { useMenuCategoryScroll } from "./MenuCategoryScrollProvider";
 
 function scrollToCategories() {
   const start = document.getElementById("menu-category-start");
@@ -16,23 +14,21 @@ function scrollToCategories() {
   });
 }
 
-export function MenuCategoryNavigation({ activeCategory }: { activeCategory?: MenuView }) {
+export function MenuCategoryNavigation({ activeCategory, onSelect }: { activeCategory?: MenuView; onSelect: (category?: MenuView) => void }) {
   const id = useId();
   const { trackRef, canScrollLeft, canScrollRight, scrollTo } = useScrollTrack();
-  const { requestScroll, consumeScroll } = useMenuCategoryScroll();
   const hasMoreCategories = canScrollLeft || canScrollRight;
-  useEffect(() => {
-    // Only a category click requests scrolling. Initial loads and browser Back
-    // keep the normal page position, including direct /menu#section links.
-    if (consumeScroll(activeCategory) && !window.location.hash) scrollToCategories();
-  }, [activeCategory, consumeScroll]);
 
-  const navigateToCategory = (category?: MenuView) => {
-    if (category === activeCategory) {
-      scrollToCategories();
-    } else {
-      requestScroll(category);
-    }
+  const navigateToCategory = (category: MenuView | undefined, href: string) => {
+    scrollToCategories();
+    if (category === activeCategory) return;
+    onSelect(category);
+    window.history.pushState(null, "", href);
+  };
+  const handleCategoryClick = (event: MouseEvent<HTMLAnchorElement>, category: MenuView | undefined, href: string) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    navigateToCategory(category, href);
   };
 
   useEffect(() => {
@@ -58,21 +54,21 @@ export function MenuCategoryNavigation({ activeCategory }: { activeCategory?: Me
           tabIndex={0}
           aria-label="Scroll drink categories"
           aria-describedby={hasMoreCategories ? `${id}-hint` : undefined}
-          className="no-scrollbar relative flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain scroll-smooth px-1 lg:flex-wrap lg:justify-center lg:gap-x-3 lg:gap-y-1 lg:overflow-visible lg:py-2 lg:snap-none"
+          className="no-scrollbar relative flex snap-x snap-mandatory gap-1 overflow-x-auto overscroll-x-contain px-1 lg:flex-wrap lg:justify-center lg:gap-x-3 lg:gap-y-1 lg:overflow-visible lg:py-2 lg:snap-none"
           onKeyDown={(event) => {
             if (event.target !== event.currentTarget) return;
             if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-              event.preventDefault(); scrollTo(event.currentTarget.scrollLeft + (event.key === "ArrowLeft" ? -1 : 1) * 220);
+              event.preventDefault(); scrollTo(event.currentTarget.scrollLeft + (event.key === "ArrowLeft" ? -1 : 1) * 220, true);
             } else if (event.key === "Home" || event.key === "End") {
-              event.preventDefault(); scrollTo(event.key === "Home" ? 0 : event.currentTarget.scrollWidth);
+              event.preventDefault(); scrollTo(event.key === "Home" ? 0 : event.currentTarget.scrollWidth, true);
             }
           }}
         >
-          <Link href="/menu" scroll={false} onNavigate={() => navigateToCategory()} aria-current={!activeCategory ? "page" : undefined} className={`${tab} ${!activeCategory ? selected : idle}`}>All drinks</Link>
+          <a href="/menu" onClick={(event) => handleCategoryClick(event, undefined, "/menu")} aria-current={!activeCategory ? "page" : undefined} className={`${tab} ${!activeCategory ? selected : idle}`}>All drinks</a>
           {menuNavigationItems.map((category) => (
-            <Link key={category.slug} href={category.href} scroll={false} onNavigate={() => navigateToCategory(category.slug)} aria-current={activeCategory === category.slug ? "page" : undefined} className={`${tab} ${activeCategory === category.slug ? selected : idle}`}>
+            <a key={category.slug} href={category.href} onClick={(event) => handleCategoryClick(event, category.slug, category.href)} aria-current={activeCategory === category.slug ? "page" : undefined} className={`${tab} ${activeCategory === category.slug ? selected : idle}`}>
               {category.name}
-            </Link>
+            </a>
           ))}
         </div>
         <span aria-hidden="true" className={`pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-primary to-transparent transition-opacity duration-200 lg:hidden ${canScrollLeft ? "opacity-100" : "opacity-0"}`} />
