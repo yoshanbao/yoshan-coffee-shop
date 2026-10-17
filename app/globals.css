@@ -3,6 +3,10 @@
 @tailwind utilities;
 html { scroll-behavior: smooth; }
 html { scroll-padding-top: 4.5rem; }
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
 @layer base {
   h1, h2, h3, p, address { overflow-wrap: break-word; }
   h1, h2, h3 { text-wrap: balance; }
@@ -21,7 +25,7 @@ html { scroll-padding-top: 4.5rem; }
 }
 @layer components {
   .navigation-link, .navigation-control {
-    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease, transform 160ms var(--ease-out);
     -webkit-tap-highlight-color: transparent;
   }
   .navigation-link { @apply text-espresso-ink; }
@@ -39,14 +43,14 @@ html { scroll-padding-top: 4.5rem; }
     background: #E8B83F;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 220ms ease-out;
+    transition: transform 180ms var(--ease-out);
   }
   .navigation-link[data-selected="true"] .navigation-link-label::after,
   .navigation-link:focus-visible .navigation-link-label::after { transform: scaleX(1); }
   .navigation-control { text-underline-offset: 4px; }
   .navigation-control:focus-visible { text-decoration-line: underline; }
   .hero-menu-link:focus-visible { text-decoration-line: none; }
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     .navigation-link:hover { color: #8C6500; }
     .navigation-link:hover .navigation-link-label::after { transform: scaleX(1); }
     .navigation-control:hover { transform: translateY(-1px); text-decoration-line: underline; }
@@ -62,14 +66,14 @@ html { scroll-padding-top: 4.5rem; }
   }
   .navigation-control-filled:active { @apply text-peach-accent; }
   .motion-control {
-    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), background-color 200ms ease, opacity 200ms ease;
+    transition: transform 160ms var(--ease-out), background-color 160ms ease, opacity 160ms ease;
   }
   .carousel-card {
-    transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1.15), box-shadow 300ms ease, border-color 200ms ease;
+    transition: transform 220ms var(--ease-out), box-shadow 220ms ease, border-color 160ms ease;
   }
   .motion-control:not(:disabled):active, .carousel-card:active { transform: scale(0.98); }
-  @media (hover: hover) {
-    .motion-control:not(:disabled):hover, .carousel-card:hover { transform: translateY(-2px); }
+  @media (hover: hover) and (pointer: fine) {
+    .motion-control:not(:disabled):hover, .carousel-card:hover { transform: translateY(-1px); }
   }
 
   /* Editorial labels: tracked mono caps for section eyebrows and quiet metadata. */
@@ -80,7 +84,7 @@ html { scroll-padding-top: 4.5rem; }
   .btn {
     @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2 text-center text-[14px] font-semibold leading-tight;
     letter-spacing: -0.005em;
-    transition: background-color 180ms ease, color 180ms ease, box-shadow 220ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease, transform 160ms var(--ease-out);
     -webkit-tap-highlight-color: transparent;
   }
   .btn-primary { @apply bg-primary text-on-primary shadow-button; }
@@ -88,7 +92,7 @@ html { scroll-padding-top: 4.5rem; }
   .btn-outline { @apply bg-canvas-white text-primary; box-shadow: inset 0 0 0 1px rgb(16 65 65 / 0.20), 0 1px 2px rgb(18 50 34 / 0.04); }
   .btn-neutral { @apply bg-canvas-white text-espresso-ink; box-shadow: inset 0 0 0 1px rgb(18 50 34 / 0.12), 0 1px 2px rgb(18 50 34 / 0.04); }
   .btn-inverse { @apply bg-pale-mint text-primary; box-shadow: 0 1px 2px rgb(0 0 0 / 0.20), 0 10px 24px -12px rgb(0 0 0 / 0.55); }
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     .btn:hover { transform: translateY(-1px); }
     .btn-primary:hover { @apply bg-primary-strong shadow-button-hover; }
     .btn-accent:hover { background-color: #722D40; box-shadow: 0 8px 17px -9px rgb(87 32 50 / 0.48); }
@@ -115,14 +119,28 @@ html { scroll-padding-top: 4.5rem; }
 
   /* Quiet text links: faint underline that firms up on hover. */
   .link-quiet { @apply underline decoration-primary/30 underline-offset-4; transition: text-decoration-color 180ms ease, color 180ms ease; }
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     .link-quiet:hover { @apply text-secondary decoration-secondary; }
   }
+
+  .menu-preview-title { transition: color 160ms ease; }
+  .menu-preview-arrow { transition: transform 180ms var(--ease-out); }
+  .gallery-photo-image { transition: transform 300ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .menu-preview-link:hover .menu-preview-title { @apply text-primary; }
+    .menu-preview-link:hover .menu-preview-arrow { transform: translateX(4px); }
+    .gallery-photo:hover .gallery-photo-image { transform: scale(1.025); }
+  }
+  .menu-preview-link:focus-visible .menu-preview-title { @apply text-primary; }
 }
-.mobile-menu-dialog[open].mobile-menu-opening .mobile-menu-panel { animation: menu-enter 200ms ease-out both; }
-.mobile-menu-dialog[open].mobile-menu-closing .mobile-menu-panel { animation: menu-exit 200ms ease-in both; }
+.mobile-menu-dialog[open].mobile-menu-opening .mobile-menu-panel { animation: menu-enter 240ms var(--ease-drawer) both; }
+.mobile-menu-dialog[open].mobile-menu-closing .mobile-menu-panel { animation: menu-exit 180ms var(--ease-out) both; }
+.mobile-menu-dialog[open].mobile-menu-opening::backdrop { animation: backdrop-enter 240ms ease both; }
+.mobile-menu-dialog[open].mobile-menu-closing::backdrop { animation: backdrop-exit 180ms ease both; }
 @keyframes menu-enter { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
 @keyframes menu-exit { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+@keyframes backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes backdrop-exit { from { opacity: 1; } to { opacity: 0; } }
 body { background: #FBFCF9; color: #1B2923; font-family: "Hanken Grotesk", sans-serif; }
 .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; line-height: 1; }
 .material-symbols-outlined[data-weight="fill"] { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
@@ -133,4 +151,5 @@ body { background: #FBFCF9; color: #1B2923; font-family: "Hanken Grotesk", sans-
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .motion-control, .carousel-card { opacity: 1 !important; transform: none !important; }
   .navigation-link, .navigation-control, .btn { transform: none !important; }
+  .gallery-photo-image, .menu-preview-arrow { transform: none !important; }
 }

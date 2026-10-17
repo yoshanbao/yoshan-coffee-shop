@@ -6,6 +6,9 @@ import { useEffect, useRef, type ReactNode } from "react";
 export function ScrollReveals({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    // A gentle reveal suits the landing page; menu and visit information should
+    // stay still and immediately readable as people browse between pages.
+    if (window.location.pathname !== "/") return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const sections = Array.from(root.current?.querySelectorAll<HTMLElement>("main section") ?? []);
     if (!sections.length || typeof IntersectionObserver === "undefined") return;
@@ -17,8 +20,8 @@ export function ScrollReveals({ children }: { children: ReactNode }) {
           observer.unobserve(entry.target);
           if (preference.matches || section.contains(document.activeElement) || typeof section.animate !== "function") continue;
           const animation = section.animate(
-            [{ opacity: 0, transform: "translateY(20px)" }, { opacity: 1, transform: "translateY(0)" }],
-            { duration: 650, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+            [{ opacity: 0.82, transform: "translateY(8px)" }, { opacity: 1, transform: "translateY(0)" }],
+            { duration: 320, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
           );
           animations.add(animation);
           animation.addEventListener("finish", () => animations.delete(animation), { once: true });

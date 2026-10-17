@@ -18,9 +18,9 @@ export function GallerySection() {
         </div>
         <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {photos.map((photo) => (
-            <figure key={photo.src} className="group">
+            <figure key={photo.src} className="gallery-photo">
               <div className="relative aspect-[4/5] overflow-hidden bg-canvas-white">
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 639px) 50vw, (max-width: 1023px) 45vw, 25vw" className="object-cover transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.025]" />
+                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 639px) 50vw, (max-width: 1023px) 45vw, 25vw" className="gallery-photo-image object-cover" />
               </div>
               <figcaption className="mt-3 border-t border-border-hairline pt-2 text-[13px] font-medium leading-[1.4] text-espresso-ink sm:text-[14px]">{photo.caption}</figcaption>
             </figure>

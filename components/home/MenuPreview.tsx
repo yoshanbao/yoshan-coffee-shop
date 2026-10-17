@@ -15,13 +15,13 @@ export function MenuPreview() {
         <ul className="mt-10 grid gap-x-14 border-t border-border-hairline sm:grid-cols-2">
           {featuredCategories.map((category) => (
             <li key={category.slug} className="border-b border-border-hairline">
-              <Link href={`/menu?category=${category.slug}`} className="group flex min-h-[104px] items-center justify-between gap-5 py-5 text-espresso-ink">
+              <Link href={`/menu?category=${category.slug}`} className="menu-preview-link flex min-h-[104px] items-center justify-between gap-5 py-5 text-espresso-ink">
                 <div>
                   <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-secondary">{category.label}</span>
-                  <h3 className="mt-1 font-editorial text-[25px] font-bold leading-tight tracking-[-0.04em] transition-colors group-hover:text-primary">{category.name}</h3>
+                  <h3 className="menu-preview-title mt-1 font-editorial text-[25px] font-bold leading-tight tracking-[-0.04em]">{category.name}</h3>
                   <p className="mt-1 text-[15px] leading-[1.55] text-charcoal-muted">{category.description}</p>
                 </div>
-                <span aria-hidden="true" className="shrink-0 text-xl text-primary transition-transform group-hover:translate-x-1">↗</span>
+                <span aria-hidden="true" className="menu-preview-arrow shrink-0 text-xl text-primary">↗</span>
               </Link>
             </li>
           ))}

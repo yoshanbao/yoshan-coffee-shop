@@ -39,7 +39,7 @@ export function MobileNavigation({ links, mapsUrl }: {
       return;
     }
     setClosing(true);
-    closeTimer.current = setTimeout(finishClose, 200);
+    closeTimer.current = setTimeout(finishClose, 180);
   }
 
   useEffect(() => {
