@@ -17,6 +17,18 @@ npm run build
 npm run start
 ```
 
+## Cloudflare Workers deployment
+
+The site is deployed at https://aj-bean-machine.kingyohantomas.workers.dev using OpenNext. The dynamic Menu route requires a Worker; a static Pages export would not serve it correctly.
+
+```bash
+npm ci
+npx wrangler login
+npm run deploy:cloudflare
+```
+
+`npm run build:cloudflare` builds the Worker locally. `npm run preview:cloudflare` builds and previews it at `http://localhost:8787`. The Cloudflare URL is set as `SITE_URL` in the build script and `wrangler.jsonc` so canonical links, sitemap, and metadata use the deployed origin. Update both values when moving to a custom domain. Cloudflare deployment currently uses Wrangler; connecting a Git repository for automatic Cloudflare builds is a separate setup.
+
 ## Project structure
 
 ```text
